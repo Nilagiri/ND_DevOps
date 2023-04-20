@@ -8,3 +8,5 @@ lint:
 
 test:
 	python -m pytest -vv test_hello.py
+all:
+	install link test
