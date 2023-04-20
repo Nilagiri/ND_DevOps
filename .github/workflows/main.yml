@@ -1,26 +1,24 @@
+name: Python application test with Github Actions
 
-name: CI
- 
-on: 
-  push: 
-    branches: [ main  ] 
-  pull_request: 
-    branches: [ main  ] 
-jobs: 
-  build: 
-    runs-on:  ubuntu-latest 
-    steps: 
-    - uses: actions/checkout@v2 
-    - name: Set Up Python 3.8
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.5
       uses: actions/setup-python@v1
       with:
-       python-version: 3.8
+        python-version: 3.5
     - name: Install dependencies
       run: |
-       make install
-    - name: test with pytest
+        make install
+    - name: Lint with pylint
       run: |
-       make test
-    
-       
-       
+        make lint
+    - name: Test with pytest
+      run: |
+        make test
